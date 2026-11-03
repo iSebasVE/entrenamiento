@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preparación a Maratón · Sebastián Villegas</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{--bg:#0d1013;--s1:#161a1f;--s2:#1e232a;--line:#2a3038;--tx:#eef1f4;--mut:#8b95a1;--acc:#c6f24e}
+  *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .hero small{color:var(--mut);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .hero h1{margin:4px 0 0;font-family:'Barlow Condensed',sans-serif;font-size:40px;line-height:.95;font-weight:800;text-transform:uppercase}
+  .hero p{margin:6px 0 0;color:var(--mut);font-size:14px}
+  .day{text-align:right;font-family:'Barlow Condensed',sans-serif}
+  .day b{display:block;font-size:54px;line-height:.85;color:var(--acc);font-weight:800}
+  .day span{font-size:12px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:18px 0}
+  .kpi{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .kpi span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .kpi b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;line-height:1.1}
+  .kpi em{font-style:normal;font-size:12px;color:var(--mut)}
+  .panel{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin-bottom:12px}
+  .panel h3{margin:0 0 2px;font-size:15px} .panel p{margin:0 0 10px;color:var(--mut);font-size:13px}
+  .chart{position:relative;height:220px}
+  .grid2{display:grid;gap:12px} @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+  .bars .b{display:grid;grid-template-columns:130px 1fr 34px;gap:8px;align-items:center;font-size:13px;margin:6px 0}
+  .bars .t{height:10px;border-radius:5px;background:var(--s2);overflow:hidden} .bars .t i{display:block;height:100%;border-radius:5px}
+  h2.sec{font-family:'Barlow Condensed',sans-serif;font-size:26px;text-transform:uppercase;margin:26px 0 4px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 6px}
+  .chip{border:1px solid var(--line);background:var(--s1);padding:6px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--mut)}
+  .chip.on{color:var(--tx);border-color:var(--tx)}
+  .wk{display:flex;justify-content:space-between;margin:18px 2px 8px;color:var(--mut);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  details{background:var(--s1);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;margin-bottom:8px}
+  summary{list-style:none;display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;padding:12px 14px;cursor:pointer}
+  summary::-webkit-details-marker{display:none}
+  .date{text-align:center;font-family:'Barlow Condensed',sans-serif;line-height:1}
+  .date b{display:block;font-size:26px} .date span{font-size:12px;color:var(--mut);text-transform:uppercase}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+  summary h3{margin:2px 0 3px;font-size:15px;font-weight:600}
+  .meta{color:var(--mut);font-size:13px;display:flex;gap:10px;flex-wrap:wrap}
+  .dn{font-family:'Barlow Condensed',sans-serif;color:var(--mut);font-size:14px;text-align:right}
+  .body{padding:0 14px 14px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:6px;margin-bottom:10px}
+  .stat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .stat span{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .stat b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:22px}
+  .txt{white-space:pre-wrap;font-size:14px;line-height:1.55;color:#cfd5dc;margin:0 0 10px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{text-align:left;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;padding:6px 4px;border-bottom:1px solid var(--line)}
+  td{padding:7px 4px;border-bottom:1px solid var(--line)} .n{text-align:right;font-variant-numeric:tabular-nums}
+  .more{display:block;margin:12px auto;background:var(--s2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:10px 18px;font-weight:600;cursor:pointer;font:inherit}
+  footer{margin-top:30px;color:var(--mut);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div><small>Sebastián Villegas · diario de entrenamiento</small><h1>Preparación<br>a Maratón</h1><p>Running · fuerza · Hyrox</p></div>
+    <div class="day"><span>Entrenando</span><b id="dayN"></b></div>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="panel"><h3>Kilómetros por semana</h3><p>Últimas 12 semanas</p><div class="chart"><canvas id="chKm"></canvas></div></div>
+  <div class="grid2">
+    <div class="panel"><h3>Ritmo en rodajes y tiradas</h3><p>min/km, más abajo es más rápido</p><div class="chart"><canvas id="chPace"></canvas></div></div>
+    <div class="panel"><h3>Cómo se reparte el entreno</h3><p>Sesiones de las últimas 4 semanas</p><div class="bars" id="dist"></div></div>
+  </div>
+  <h2 class="sec">Cada entreno</h2>
+  <div class="meta">Toca un entreno para ver lo que hice.</div>
+  <div class="chips" id="filters"></div>
+  <div id="list"></div>
+  <button class="more" id="more">Ver más</button>
+  <footer id="upd"></footer>
+</div>
+<script>
+function main(DATA, UPDATED){
+const TIPOS={"Rodaje":{c:"#4cc9f0",run:1},"Calidad / Series":{c:"#ff5d73",run:1},"Tirada larga":{c:"#5b8cff",run:1},"Carrera":{c:"#ffd60a",run:1},"Fuerza":{c:"#ff9f1c"},"Hyrox":{c:"#b388ff"},"Core / Movilidad":{c:"#2ec4b6"},"HIIT / Funcional":{c:"#e76f51"},"Bici / Cardio":{c:"#f4d35e"},"Fútbol":{c:"#80ed99"},"Otro":{c:"#adb5bd"}};
+const DIA1=new Date(2026,10,2), MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'], DIAS=['dom','lun','mar','mié','jue','vie','sáb'];
+const $=s=>document.querySelector(s);
+const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x==='class')e.className=v;else if(x==='style')e.style.cssText=v;else if(x.startsWith('on'))e.addEventListener(x.slice(2),v);else e.setAttribute(x,v);}for(const c of k){if(c==null||c===false)continue;e.append(c instanceof Node?c:document.createTextNode(String(c)));}return e;};
+const pad=n=>String(n).padStart(2,'0'), ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`, parseD=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
+const lunes=d=>{const x=new Date(d);x.setDate(x.getDate()-((x.getDay()+6)%7));x.setHours(0,0,0,0);return x;};
+const isRun=t=>!!(TIPOS[t]||{}).run, color=t=>(TIPOS[t]||TIPOS.Otro).c;
+const fmtDur=s=>{if(!s)return'–';const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=Math.round(s%60);return h?`${h}:${pad(m)}:${pad(x)}`:`${m}:${pad(x)}`;};
+const pace=e=>(e.distanciaKm>0&&e.duracionSeg>0)?e.duracionSeg/e.distanciaKm:null;
+const fmtPace=p=>{if(!p)return'–';let m=Math.floor(p/60),s=Math.round(p%60);if(s===60){m++;s=0;}return`${m}:${pad(s)}`;};
+const dayNum=s=>Math.floor((parseD(s)-DIA1)/864e5)+1;
+const E=DATA.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha)||(b.hora||'').localeCompare(a.hora||''));
+const today=new Date(); $('#dayN').textContent='Día '+Math.max(1,Math.floor((new Date(today.getFullYear(),today.getMonth(),today.getDate())-DIA1)/864e5)+1);
+$('#upd').textContent='Actualizado el '+UPDATED+' · datos de Garmin y registro propio';
+
+// KPIs
+const mon=lunes(today), monS=ymd(mon);
+const runs=E.filter(e=>isRun(e.tipo));
+const desde1=E.filter(e=>e.fecha>='2026-11-02');
+const kmSem=runs.filter(e=>e.fecha>=monS).reduce((s,e)=>s+(e.distanciaKm||0),0);
+const kmTot=runs.reduce((s,e)=>s+(e.distanciaKm||0),0);
+const largo=Math.max(0,...runs.map(e=>e.distanciaKm||0));
+const horas=E.reduce((s,e)=>s+(e.duracionSeg||0),0)/3600;
+$('#kpis').append(...[['Sesiones',E.length,'registradas'],['Km corridos',kmTot.toFixed(0),'en total'],['Esta semana',kmSem.toFixed(1),'km'],['Más larga',largo?largo.toFixed(1):'–','km'],['Horas',horas.toFixed(0),'entrenando'],['Desde el Día 1',desde1.length,'sesiones']].map(([k,v,u])=>el('div',{class:'kpi'},el('span',{},k),el('b',{},v),el('em',{},u))));
+
+// charts
+Chart.defaults.color='#8b95a1';Chart.defaults.borderColor='#2a3038';Chart.defaults.font.family='Inter';
+const opts=y=>({responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#1e232a',borderColor:'#2a3038',borderWidth:1,padding:10}},scales:{x:{grid:{display:false}},y:{grid:{color:'#20262d'},...y}}});
+const weeks=[];for(let i=11;i>=0;i--){const d=new Date(mon);d.setDate(d.getDate()-7*i);weeks.push(ymd(d));}
+const kmW=weeks.map(w=>{const e2=new Date(parseD(w));e2.setDate(e2.getDate()+6);const s2=ymd(e2);return +runs.filter(e=>e.fecha>=w&&e.fecha<=s2).reduce((s,e)=>s+(e.distanciaKm||0),0).toFixed(1);});
+new Chart($('#chKm'),{type:'bar',data:{labels:weeks.map(w=>{const d=parseD(w);return d.getDate()+' '+MES[d.getMonth()];}),datasets:[{data:kmW,backgroundColor:weeks.map((w,i)=>i===11?'#c6f24e':'#4cc9f0'),borderRadius:6,maxBarThickness:34}]},options:opts({beginAtZero:true,ticks:{callback:v=>v+' km'}})});
+const pz=E.filter(e=>(e.tipo==='Rodaje'||e.tipo==='Tirada larga')&&pace(e)&&(e.distanciaKm||0)>=3).sort((a,b)=>a.fecha.localeCompare(b.fecha)).slice(-30);
+new Chart($('#chPace'),{type:'line',data:{labels:pz.map(e=>e.fecha.slice(5)),datasets:[{data:pz.map(e=>+(pace(e)/60).toFixed(3)),borderColor:'#4cc9f0',backgroundColor:'#4cc9f0',tension:.3,pointRadius:3}]},options:{...opts({reverse:true,ticks:{callback:v=>fmtPace(v*60)}}),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmtPace(c.raw*60)+' /km'}}}}});
+const d28=new Date(today);d28.setDate(d28.getDate()-27);const s28=ymd(d28);const cnt={};E.filter(e=>e.fecha>=s28).forEach(e=>cnt[e.tipo]=(cnt[e.tipo]||0)+1);
+const mx=Math.max(1,...Object.values(cnt));
+$('#dist').append(...Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([t,n])=>el('div',{class:'b'},el('span',{},t),el('div',{class:'t'},el('i',{style:`width:${n/mx*100}%;background:${color(t)}`})),el('b',{style:'text-align:right'},n))));
+
+// lista
+let filtro='Todos', shown=25;
+function filters(){const f=$('#filters');f.replaceChildren();for(const t of['Todos',...Object.keys(TIPOS)]){if(t!=='Todos'&&!E.some(e=>e.tipo===t))continue;f.append(el('button',{class:'chip'+(filtro===t?' on':''),onclick:()=>{filtro=t;shown=25;filters();list();}},t));}}
+function list(){
+  const L=$('#list');L.replaceChildren();const items=E.filter(e=>filtro==='Todos'||e.tipo===filtro);let wk=null;
+  for(const e of items.slice(0,shown)){
+    const m=ymd(lunes(parseD(e.fecha)));
+    if(m!==wk){wk=m;const inW=items.filter(x=>ymd(lunes(parseD(x.fecha)))===m);const km=inW.reduce((s,x)=>s+(isRun(x.tipo)?x.distanciaKm||0:0),0);const md=parseD(m),sd=new Date(md);sd.setDate(sd.getDate()+6);
+      L.append(el('div',{class:'wk'},el('span',{},`Semana ${md.getDate()} ${MES[md.getMonth()]} – ${sd.getDate()} ${MES[sd.getMonth()]}`),el('span',{},`${inW.length} sesiones · ${km.toFixed(1)} km`)));}
+    const d=parseD(e.fecha),meta=[];
+    if(e.duracionSeg)meta.push('⏱ '+fmtDur(e.duracionSeg)); if(e.distanciaKm)meta.push(e.distanciaKm+' km'); if(isRun(e.tipo)&&pace(e))meta.push(fmtPace(pace(e))+'/km'); if(e.ejercicios&&e.ejercicios.length)meta.push(e.ejercicios.length+' ejercicios');
+    const st=[];if(e.duracionSeg)st.push(['Duración',fmtDur(e.duracionSeg)]);if(e.distanciaKm)st.push(['Distancia',e.distanciaKm+' km']);if(isRun(e.tipo)&&pace(e))st.push(['Ritmo',fmtPace(pace(e))+' /km']);if(e.fcMedia)st.push(['FC media',e.fcMedia]);if(e.rpe)st.push(['Esfuerzo',e.rpe+'/10']);if(e.desnivel)st.push(['Desnivel','+'+Math.round(e.desnivel)+' m']);
+    const body=el('div',{class:'body'});
+    if(st.length)body.append(el('div',{class:'stats'},...st.map(([k,v])=>el('div',{class:'stat'},el('span',{},k),el('b',{},v)))));
+    if(e.descripcion)body.append(el('p',{class:'txt'},e.descripcion));
+    if(e.ejercicios&&e.ejercicios.length){const tb=el('tbody');e.ejercicios.forEach(x=>tb.append(el('tr',{},el('td',{},x.nombre),el('td',{class:'n'},x.series||'–'),el('td',{class:'n'},x.reps??'–'),el('td',{class:'n'},x.kg?x.kg+' kg':'–'))));body.append(el('table',{},el('thead',{},el('tr',{},el('th',{},'Ejercicio'),el('th',{class:'n'},'Series'),el('th',{class:'n'},'Reps'),el('th',{class:'n'},'Peso'))),tb));}
+    const dn=dayNum(e.fecha);
+    L.append(el('details',{style:`--c:${color(e.tipo)}`},el('summary',{},el('div',{class:'date'},el('b',{},d.getDate()),el('span',{},DIAS[d.getDay()]+' '+MES[d.getMonth()])),el('div',{},el('div',{class:'tag'},e.tipo),el('h3',{},e.titulo||e.tipo),el('div',{class:'meta'},...meta.map(x=>el('span',{},x)))),el('div',{class:'dn'},dn>=1?'Día '+dn:'')),body));
+  }
+  $('#more').style.display=items.length>shown?'block':'none';
+}
+$('#more').onclick=()=>{shown+=25;list();};
+filters();list();
+}
+(async()=>{
+  try{
+    const idx=await (await fetch('datos/index.json',{cache:'no-store'})).json();
+    const arrs=await Promise.all((idx.meses||[]).map(m=>fetch('datos/'+m+'.json',{cache:'no-store'}).then(r=>r.ok?r.json():[]).catch(()=>[])));
+    const d=new Date(idx.actualizado||Date.now());
+    const upd=d.toLocaleString('es-CO',{day:'numeric',month:'long',hour:'numeric',minute:'2-digit',timeZone:'America/Bogota'});
+    main(arrs.flat(), upd);
+  }catch(e){ document.getElementById('list').textContent='No se pudieron cargar los entrenos. Recarga la página.'; }
+})();
+</script>
+</body>
+</html>
