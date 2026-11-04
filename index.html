@@ -68,7 +68,7 @@
   <div class="kpis" id="kpis"></div>
   <div class="panel"><h3>Kilómetros por semana</h3><p>Últimas 12 semanas</p><div class="chart"><canvas id="chKm"></canvas></div></div>
   <div class="grid2">
-    <div class="panel"><h3>Ritmo en rodajes y tiradas</h3><p>min/km, más abajo es más rápido</p><div class="chart"><canvas id="chPace"></canvas></div></div>
+    <div class="panel"><h3>Ritmo en rodajes y tiradas</h3><p>Minutos por kilómetro en cada salida de 3 km o más. Si la línea baja, estoy corriendo más rápido.</p><div class="chart"><canvas id="chPace"></canvas></div></div>
     <div class="panel"><h3>Cómo se reparte el entreno</h3><p>Sesiones de las últimas 4 semanas</p><div class="bars" id="dist"></div></div>
   </div>
   <h2 class="sec">Cada entreno</h2>
@@ -110,9 +110,11 @@ Chart.defaults.color='#8b95a1';Chart.defaults.borderColor='#2a3038';Chart.defaul
 const opts=y=>({responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#1e232a',borderColor:'#2a3038',borderWidth:1,padding:10}},scales:{x:{grid:{display:false}},y:{grid:{color:'#20262d'},...y}}});
 const weeks=[];for(let i=11;i>=0;i--){const d=new Date(mon);d.setDate(d.getDate()-7*i);weeks.push(ymd(d));}
 const kmW=weeks.map(w=>{const e2=new Date(parseD(w));e2.setDate(e2.getDate()+6);const s2=ymd(e2);return +runs.filter(e=>e.fecha>=w&&e.fecha<=s2).reduce((s,e)=>s+(e.distanciaKm||0),0).toFixed(1);});
-new Chart($('#chKm'),{type:'bar',data:{labels:weeks.map(w=>{const d=parseD(w);return d.getDate()+' '+MES[d.getMonth()];}),datasets:[{data:kmW,backgroundColor:weeks.map((w,i)=>i===11?'#c6f24e':'#4cc9f0'),borderRadius:6,maxBarThickness:34}]},options:opts({beginAtZero:true,ticks:{callback:v=>v+' km'}})});
+if(!kmW.some(v=>v>0)){const c=$('#chKm').parentElement;c.style.height='auto';c.replaceChildren(el('div',{style:'color:#8b95a1;font-size:13px;padding:34px 8px;text-align:center'},'Aún no hay kilómetros corridos registrados.'));}
+else new Chart($('#chKm'),{type:'bar',data:{labels:weeks.map(w=>{const d=parseD(w);return d.getDate()+' '+MES[d.getMonth()];}),datasets:[{data:kmW,backgroundColor:weeks.map((w,i)=>i===11?'#c6f24e':'#4cc9f0'),borderRadius:6,maxBarThickness:34}]},options:opts({beginAtZero:true,ticks:{callback:v=>v+' km'}})});
 const pz=E.filter(e=>(e.tipo==='Rodaje'||e.tipo==='Tirada larga')&&pace(e)&&(e.distanciaKm||0)>=3).sort((a,b)=>a.fecha.localeCompare(b.fecha)).slice(-30);
-new Chart($('#chPace'),{type:'line',data:{labels:pz.map(e=>e.fecha.slice(5)),datasets:[{data:pz.map(e=>+(pace(e)/60).toFixed(3)),borderColor:'#4cc9f0',backgroundColor:'#4cc9f0',tension:.3,pointRadius:3}]},options:{...opts({reverse:true,ticks:{callback:v=>fmtPace(v*60)}}),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmtPace(c.raw*60)+' /km'}}}}});
+if(pz.length<2){const c=$('#chPace').parentElement;c.style.height='auto';c.replaceChildren(el('div',{style:'color:#8b95a1;font-size:13px;padding:34px 8px;text-align:center;line-height:1.5'},pz.length?'Ya hay 1 rodaje registrado. La gráfica aparece desde el segundo.':'Aquí verás cómo mejora mi ritmo semana a semana. Aparece cuando registre al menos 2 rodajes de 3 km o más.'));}
+else new Chart($('#chPace'),{type:'line',data:{labels:pz.map(e=>e.fecha.slice(5)),datasets:[{data:pz.map(e=>+(pace(e)/60).toFixed(3)),borderColor:'#4cc9f0',backgroundColor:'#4cc9f0',tension:.3,pointRadius:3}]},options:{...opts({reverse:true,ticks:{callback:v=>fmtPace(v*60)}}),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmtPace(c.raw*60)+' /km'}}}}});
 const d28=new Date(today);d28.setDate(d28.getDate()-27);const s28=ymd(d28);const cnt={};E.filter(e=>e.fecha>=s28).forEach(e=>cnt[e.tipo]=(cnt[e.tipo]||0)+1);
 const mx=Math.max(1,...Object.values(cnt));
 $('#dist').append(...Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([t,n])=>el('div',{class:'b'},el('span',{},t),el('div',{class:'t'},el('i',{style:`width:${n/mx*100}%;background:${color(t)}`})),el('b',{style:'text-align:right'},n))));
