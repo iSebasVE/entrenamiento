@@ -8,7 +8,7 @@
 "distanciaKm": 2.43,
 "fcMedia": 112,
 "rpe": 2,
-"descripcion": "Ritmo medio 11:35/km · cadencia 109 ppm\nEfecto de entrenamiento: aeróbico 1.1 · anaeróbico 0.0 (Recuperación)\nPotencia media 140 W\nMinutos de intensidad: 12 moderados · 6 vigorosos"
+"descripcion": "Calentamiento: 5 min\n6 × 1 min a 6:41/km con 2 min de recuperación\nEnfriamiento: 5 min"
 },
 {
 "fecha": "2026-11-02",
@@ -17,7 +17,7 @@
 "titulo": "Legs sin carga de tobillo v2 - E",
 "duracionSeg": 4100,
 "fcMedia": 92,
-"descripcion": "Efecto de entrenamiento: aeróbico 0.4 · anaeróbico 0.0\nMinutos de intensidad: 14 moderados · 0 vigorosos\nCurl femoral: 8×12\nHip thrust con barra: 4×10\nAbducción de cadera de pie: 3×15\nAducción de pie: 3×15",
+"descripcion": "Curl femoral: 8 × 12\nHip thrust con barra: 4 × 10\nAbducción de cadera de pie: 3 × 15\nAducción de pie: 3 × 15",
 "ejercicios": [
 {
 "nombre": "Curl femoral",
@@ -48,7 +48,7 @@
 "titulo": "Push hipertrofia",
 "duracionSeg": 2973,
 "fcMedia": 99,
-"descripcion": "Efecto de entrenamiento: aeróbico 0.4 · anaeróbico 0.0\nMinutos de intensidad: 22 moderados · 0 vigorosos\nPress de banca: 4×8 @ 80 kg\nPress de hombro con mancuernas: 3×10 @ 20 kg\nPress de banca: 3×10 @ 50 kg\nExtensión de tríceps: 3×12 @ 50 kg\nElevaciones laterales: 3×15 @ 7.5 kg",
+"descripcion": "Press de banca: 4 × 8 · 80 kg\nPress de hombro con mancuernas: 3 × 10 · 20 kg\nPress de banca: 3 × 10 · 50 kg\nExtensión de tríceps: 3 × 12 · 50 kg\nElevaciones laterales: 3 × 15 · 7.5 kg",
 "ejercicios": [
 {
 "nombre": "Press de banca",
@@ -89,7 +89,7 @@
 "titulo": "Core A - Recto abdominal",
 "duracionSeg": 1023,
 "fcMedia": 97,
-"descripcion": "Efecto de entrenamiento: aeróbico 0.3 · anaeróbico 0.0\nMinutos de intensidad: 6 moderados · 0 vigorosos\nCrunch en polea: 3×12 @ 90 kg\nElevación de piernas colgado: 3×10\nCardio: 3×8",
+"descripcion": "Crunch en polea: 3 × 12 · 90 kg\nElevación de piernas colgado: 3 × 10\nCardio: 3 × 8",
 "ejercicios": [
 {
 "nombre": "Crunch en polea",
@@ -117,6 +117,6 @@
 "duracionSeg": 1809,
 "fcMedia": 137,
 "rpe": 2,
-"descripcion": "Efecto de entrenamiento: aeróbico 2.2 · anaeróbico 0.0 (Recuperación)\nMinutos de intensidad: 6 moderados · 21 vigorosos"
+"descripcion": "30 min · FC media 137"
 }
 ]

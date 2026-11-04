@@ -134,7 +134,7 @@ function list(){
     const body=el('div',{class:'body'});
     if(st.length)body.append(el('div',{class:'stats'},...st.map(([k,v])=>el('div',{class:'stat'},el('span',{},k),el('b',{},v)))));
     if(e.descripcion)body.append(el('p',{class:'txt'},e.descripcion));
-    if(e.ejercicios&&e.ejercicios.length){const tb=el('tbody');e.ejercicios.forEach(x=>tb.append(el('tr',{},el('td',{},x.nombre),el('td',{class:'n'},x.series||'–'),el('td',{class:'n'},x.reps??'–'),el('td',{class:'n'},x.kg?x.kg+' kg':'–'))));body.append(el('table',{},el('thead',{},el('tr',{},el('th',{},'Ejercicio'),el('th',{class:'n'},'Series'),el('th',{class:'n'},'Reps'),el('th',{class:'n'},'Peso'))),tb));}
+    if(!e.descripcion&&e.ejercicios&&e.ejercicios.length){const tb=el('tbody');e.ejercicios.forEach(x=>tb.append(el('tr',{},el('td',{},x.nombre),el('td',{class:'n'},x.series||'–'),el('td',{class:'n'},x.reps??'–'),el('td',{class:'n'},x.kg?x.kg+' kg':'–'))));body.append(el('table',{},el('thead',{},el('tr',{},el('th',{},'Ejercicio'),el('th',{class:'n'},'Series'),el('th',{class:'n'},'Reps'),el('th',{class:'n'},'Peso'))),tb));}
     const dn=dayNum(e.fecha);
     L.append(el('details',{style:`--c:${color(e.tipo)}`},el('summary',{},el('div',{class:'date'},el('b',{},d.getDate()),el('span',{},DIAS[d.getDay()]+' '+MES[d.getMonth()])),el('div',{},el('div',{class:'tag'},e.tipo),el('h3',{},e.titulo||e.tipo),el('div',{class:'meta'},...meta.map(x=>el('span',{},x)))),el('div',{class:'dn'},dn>=1?'Día '+dn:'')),body));
   }
