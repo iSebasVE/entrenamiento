@@ -79,7 +79,8 @@
   <footer id="upd"></footer>
 </div>
 <script>
-function main(DATA, UPDATED){
+function main(DATA, UPDATED, HIST){
+HIST=HIST||{};
 const TIPOS={"Rodaje":{c:"#4cc9f0",run:1},"Calidad / Series":{c:"#ff5d73",run:1},"Tirada larga":{c:"#5b8cff",run:1},"Carrera":{c:"#ffd60a",run:1},"Fuerza":{c:"#ff9f1c"},"Hyrox":{c:"#b388ff"},"Core / Movilidad":{c:"#2ec4b6"},"HIIT / Funcional":{c:"#e76f51"},"Bici / Cardio":{c:"#f4d35e"},"Fútbol":{c:"#80ed99"},"Otro":{c:"#adb5bd"}};
 const DIA1=new Date(2026,10,2), MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'], DIAS=['dom','lun','mar','mié','jue','vie','sáb'];
 const $=s=>document.querySelector(s);
@@ -109,7 +110,7 @@ $('#kpis').append(...[['Sesiones',E.length,'registradas'],['Km corridos',kmTot.t
 Chart.defaults.color='#8b95a1';Chart.defaults.borderColor='#2a3038';Chart.defaults.font.family='Inter';
 const opts=y=>({responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#1e232a',borderColor:'#2a3038',borderWidth:1,padding:10}},scales:{x:{grid:{display:false}},y:{grid:{color:'#20262d'},...y}}});
 const weeks=[];for(let i=11;i>=0;i--){const d=new Date(mon);d.setDate(d.getDate()-7*i);weeks.push(ymd(d));}
-const kmW=weeks.map(w=>{const e2=new Date(parseD(w));e2.setDate(e2.getDate()+6);const s2=ymd(e2);return +runs.filter(e=>e.fecha>=w&&e.fecha<=s2).reduce((s,e)=>s+(e.distanciaKm||0),0).toFixed(1);});
+const kmW=weeks.map(w=>{const e2=new Date(parseD(w));e2.setDate(e2.getDate()+6);const s2=ymd(e2);return +(runs.filter(e=>e.fecha>=w&&e.fecha<=s2).reduce((s,e)=>s+(e.distanciaKm||0),0)+(HIST[w]||0)).toFixed(1);});
 if(!kmW.some(v=>v>0)){const c=$('#chKm').parentElement;c.style.height='auto';c.replaceChildren(el('div',{style:'color:#8b95a1;font-size:13px;padding:34px 8px;text-align:center'},'Aún no hay kilómetros corridos registrados.'));}
 else new Chart($('#chKm'),{type:'bar',data:{labels:weeks.map(w=>{const d=parseD(w);return d.getDate()+' '+MES[d.getMonth()];}),datasets:[{data:kmW,backgroundColor:weeks.map((w,i)=>i===11?'#c6f24e':'#4cc9f0'),borderRadius:6,maxBarThickness:34}]},options:opts({beginAtZero:true,ticks:{callback:v=>v+' km'}})});
 const pz=E.filter(e=>(e.tipo==='Rodaje'||e.tipo==='Tirada larga')&&pace(e)&&(e.distanciaKm||0)>=3).sort((a,b)=>a.fecha.localeCompare(b.fecha)).slice(-30);
@@ -146,10 +147,11 @@ filters();list();
 (async()=>{
   try{
     const idx=await (await fetch('datos/index.json',{cache:'no-store'})).json();
+    const hist=await fetch('datos/historial.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(j=>j.semanas||{}).catch(()=>({}));
     const arrs=await Promise.all((idx.meses||[]).map(m=>fetch('datos/'+m+'.json',{cache:'no-store'}).then(r=>r.ok?r.json():[]).catch(()=>[])));
     const d=new Date(idx.actualizado||Date.now());
     const upd=d.toLocaleString('es-CO',{day:'numeric',month:'long',hour:'numeric',minute:'2-digit',timeZone:'America/Bogota'});
-    main(arrs.flat(), upd);
+    main(arrs.flat(), upd, hist);
   }catch(e){ document.getElementById('list').textContent='No se pudieron cargar los entrenos. Recarga la página.'; }
 })();
 </script>
