@@ -118,5 +118,68 @@
 "fcMedia": 137,
 "rpe": 2,
 "descripcion": "30 min · FC media 137"
+},
+{
+"fecha": "2026-11-04",
+"hora": "18:06",
+"tipo": "Fuerza",
+"titulo": "Técnica fase 1",
+"duracionSeg": 672,
+"fcMedia": 118,
+"descripcion": "Runners lunge to balance: 3 × 20\nWall walk: 2 series\nCardio: 3 series",
+"ejercicios": [
+{
+"nombre": "Runners lunge to balance",
+"series": 3,
+"reps": 20
+},
+{
+"nombre": "Wall walk",
+"series": 2
+},
+{
+"nombre": "Cardio",
+"series": 3
+}
+]
+},
+{
+"fecha": "2026-11-04",
+"hora": "18:20",
+"tipo": "Rodaje",
+"titulo": "Guacarí - Retorno 2: 8x1' trote / 1'30 cam",
+"duracionSeg": 1806,
+"distanciaKm": 2.86,
+"fcMedia": 128,
+"rpe": 1,
+"desnivel": 11,
+"descripcion": "Calentamiento: 5 min\n8 × 1 min a 6:11/km con 1:30 min de recuperación caminando\nEnfriamiento: 5 min"
+},
+{
+"fecha": "2026-11-04",
+"hora": "18:58",
+"tipo": "Core / Movilidad",
+"titulo": "Core B - Estabilidad",
+"duracionSeg": 1265,
+"fcMedia": 100,
+"descripcion": "Plancha: 3 series\nCircular arm crunch: 3 × 20 · 10 kg\nWeighted dead bug: 3 × 20 · 10 kg",
+"ejercicios": [
+{
+"nombre": "Plancha",
+"series": 3
+},
+{
+"nombre": "Circular arm crunch",
+"series": 3,
+"reps": 20,
+"kg": 10
+},
+{
+"nombre": "Weighted dead bug",
+"series": 3,
+"reps": 20,
+"kg": 10
+}
+]
 }
 ]
