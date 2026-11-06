@@ -192,5 +192,23 @@
 "fcMedia": 187,
 "desnivel": 26,
 "descripcion": "48 min · 4.9 km · FC media 187"
+},
+{
+"fecha": "2026-11-06",
+"hora": "17:05",
+"tipo": "Fuerza",
+"titulo": "Pull sentado - Esguince",
+"duracionSeg": 2394,
+"fcMedia": 89,
+"descripcion": "Dominadas: 4 × 8/8/8/6 · 65→80 kg\nRemo sentado en polea: 3 × 10 · 40→48 kg\nPress de hombro: 3 × 15 · 36 kg\nCurl de bíceps con mancuernas: 3 × 12 · 10 kg"
+},
+{
+"fecha": "2026-11-06",
+"hora": "17:53",
+"tipo": "Core / Movilidad",
+"titulo": "Core C - Oblicuos",
+"duracionSeg": 1510,
+"fcMedia": 94,
+"descripcion": "Cardio: 3 series\nPlancha lateral: 3 × 30 s por lado\nHiperextensiones: 3 × 12 · 8 kg"
 }
 ]
