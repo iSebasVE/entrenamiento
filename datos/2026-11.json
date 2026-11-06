@@ -181,5 +181,16 @@
 "kg": 10
 }
 ]
+},
+{
+"fecha": "2026-11-05",
+"hora": "19:32",
+"tipo": "Hyrox",
+"titulo": "Guacarí Roxya App: Hyrox BOX",
+"duracionSeg": 2892,
+"distanciaKm": 4.92,
+"fcMedia": 187,
+"desnivel": 26,
+"descripcion": "48 min · 4.9 km · FC media 187"
 }
 ]
