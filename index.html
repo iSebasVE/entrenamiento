@@ -36,6 +36,16 @@
   .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 6px}
   .chip{border:1px solid var(--line);background:var(--s1);padding:6px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--mut)}
   .chip.on{color:var(--tx);border-color:var(--tx)}
+  .redes{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+  .redes a{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--s1);color:var(--tx);text-decoration:none;font-size:13px;font-weight:600}
+  .redes a:hover{border-color:var(--acc)}
+  .redes svg{width:16px;height:16px}
+  details.sem{margin:10px 0;background:none;border:none;border-left:none}
+  details.sem>summary{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--s1);color:var(--mut);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;grid-template-columns:none}
+  details.sem>summary .t{color:var(--tx)}
+  details.sem>summary .chev{display:inline-block;transition:transform .2s;margin-left:8px;color:var(--acc)}
+  details.sem[open]>summary .chev{transform:rotate(90deg)}
+  details.sem[open]>summary{margin-bottom:8px}
   .wk{display:flex;justify-content:space-between;margin:18px 2px 8px;color:var(--mut);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
   details{background:var(--s1);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;margin-bottom:8px}
   summary{list-style:none;display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;padding:12px 14px;cursor:pointer}
@@ -64,6 +74,11 @@
   <div class="hero">
     <div><small>Sebastián Villegas · diario de entrenamiento</small><h1>Preparación<br>a Maratón</h1><p>Running · Fuerza · Hyrox</p></div>
     <div class="day"><span>Entrenando</span><b id="dayN"></b></div>
+  </div>
+  <div class="redes">
+    <a href="https://www.instagram.com/sebasville14/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a>
+    <a href="https://www.tiktok.com/@sebasville14" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.5 2.5 4.5 5 4.5"/></svg>TikTok</a>
+    <a href="https://www.strava.com/athletes/75440192" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 11 7l6 13"/><path d="M13 16l2.5 5 2.5-5"/></svg>Strava</a>
   </div>
   <div class="kpis" id="kpis"></div>
   <div class="panel"><h3>Kilómetros por semana</h3><p>Últimas 12 semanas</p><div class="chart"><canvas id="chKm"></canvas></div></div>
@@ -124,11 +139,16 @@ $('#dist').append(...Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([t,n])=>el(
 let filtro='Todos', shown=25;
 function filters(){const f=$('#filters');f.replaceChildren();for(const t of['Todos',...Object.keys(TIPOS)]){if(t!=='Todos'&&!E.some(e=>e.tipo===t))continue;f.append(el('button',{class:'chip'+(filtro===t?' on':''),onclick:()=>{filtro=t;shown=25;filters();list();}},t));}}
 function list(){
-  const L=$('#list');L.replaceChildren();const items=E.filter(e=>filtro==='Todos'||e.tipo===filtro);let wk=null;
-  for(const e of items.slice(0,shown)){
-    const m=ymd(lunes(parseD(e.fecha)));
-    if(m!==wk){wk=m;const inW=items.filter(x=>ymd(lunes(parseD(x.fecha)))===m);const km=inW.reduce((s,x)=>s+(isRun(x.tipo)?x.distanciaKm||0:0),0);const md=parseD(m),sd=new Date(md);sd.setDate(sd.getDate()+6);
-      L.append(el('div',{class:'wk'},el('span',{},`Semana ${md.getDate()} ${MES[md.getMonth()]} – ${sd.getDate()} ${MES[sd.getMonth()]}`),el('span',{},`${inW.length} sesiones · ${km.toFixed(1)} km`)));}
+  const L=$('#list');L.replaceChildren();const items=E.filter(e=>filtro==='Todos'||e.tipo===filtro);
+  const hoyMon=ymd(lunes(new Date()));const grupos=[];
+  for(const e of items){const m=ymd(lunes(parseD(e.fecha)));let g=grupos[grupos.length-1];if(!g||g.m!==m){g={m,es:[]};grupos.push(g);}g.es.push(e);}
+  grupos.forEach((g,gi)=>{
+    const km=g.es.reduce((s,x)=>s+(isRun(x.tipo)?x.distanciaKm||0:0),0);const md=parseD(g.m),sd=new Date(md);sd.setDate(sd.getDate()+6);
+    const abierta=g.m===hoyMon||(gi===0&&filtro!=='Todos');
+    const titulo=g.m===hoyMon?'Esta semana':`Semana ${md.getDate()} ${MES[md.getMonth()]} – ${sd.getDate()} ${MES[sd.getMonth()]}`;
+    const sem=el('details',{class:'sem'});if(abierta)sem.open=true;
+    sem.append(el('summary',{},el('span',{class:'t'},titulo,el('span',{class:'chev'},'›')),el('span',{},`${g.es.length} ${g.es.length===1?'sesión':'sesiones'} · ${km.toFixed(1)} km`)));
+    for(const e of g.es){
     const d=parseD(e.fecha),meta=[];
     if(e.duracionSeg)meta.push('⏱ '+fmtDur(e.duracionSeg)); if(e.distanciaKm)meta.push(e.distanciaKm+' km'); if(isRun(e.tipo)&&pace(e))meta.push(fmtPace(pace(e))+'/km'); if(e.ejercicios&&e.ejercicios.length)meta.push(e.ejercicios.length+' ejercicios');
     const st=[];if(e.duracionSeg)st.push(['Duración',fmtDur(e.duracionSeg)]);if(e.distanciaKm)st.push(['Distancia',e.distanciaKm+' km']);if(isRun(e.tipo)&&pace(e))st.push(['Ritmo',fmtPace(pace(e))+' /km']);if(e.fcMedia)st.push(['FC media',e.fcMedia]);if(e.rpe)st.push(['Esfuerzo',e.rpe+'/10']);if(e.desnivel)st.push(['Desnivel','+'+Math.round(e.desnivel)+' m']);
@@ -137,9 +157,11 @@ function list(){
     if(e.descripcion)body.append(el('p',{class:'txt'},e.descripcion));
     if(!e.descripcion&&e.ejercicios&&e.ejercicios.length){const tb=el('tbody');e.ejercicios.forEach(x=>tb.append(el('tr',{},el('td',{},x.nombre),el('td',{class:'n'},x.series||'–'),el('td',{class:'n'},x.reps??'–'),el('td',{class:'n'},x.kg?x.kg+' kg':'–'))));body.append(el('table',{},el('thead',{},el('tr',{},el('th',{},'Ejercicio'),el('th',{class:'n'},'Series'),el('th',{class:'n'},'Reps'),el('th',{class:'n'},'Peso'))),tb));}
     const dn=dayNum(e.fecha);
-    L.append(el('details',{style:`--c:${color(e.tipo)}`},el('summary',{},el('div',{class:'date'},el('b',{},d.getDate()),el('span',{},DIAS[d.getDay()]+' '+MES[d.getMonth()])),el('div',{},el('div',{class:'tag'},e.tipo),el('h3',{},e.titulo||e.tipo),el('div',{class:'meta'},...meta.map(x=>el('span',{},x)))),el('div',{class:'dn'},dn>=1?'Día '+dn:'')),body));
-  }
-  $('#more').style.display=items.length>shown?'block':'none';
+    sem.append(el('details',{style:`--c:${color(e.tipo)}`},el('summary',{},el('div',{class:'date'},el('b',{},d.getDate()),el('span',{},DIAS[d.getDay()]+' '+MES[d.getMonth()])),el('div',{},el('div',{class:'tag'},e.tipo),el('h3',{},e.titulo||e.tipo),el('div',{class:'meta'},...meta.map(x=>el('span',{},x)))),el('div',{class:'dn'},dn>=1?'Día '+dn:'')),body));
+    }
+    L.append(sem);
+  });
+  $('#more').style.display='none';
 }
 $('#more').onclick=()=>{shown+=25;list();};
 filters();list();
