@@ -210,5 +210,14 @@
 "duracionSeg": 1510,
 "fcMedia": 94,
 "descripcion": "Cardio: 3 series\nPlancha lateral: 3 × 30 s por lado\nHiperextensiones: 3 × 12 · 8 kg"
+},
+{
+"fecha": "2026-11-09",
+"hora": "18:34",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento de pierna",
+"duracionSeg": 3564,
+"fcMedia": 99,
+"descripcion": "Curl femoral: 4 × 12 · 45→59 kg\nExtensión de cuádriceps: 4 × 12 · 23→36.5 kg\nHip thrust con barra: 4 × 10 · 42 kg\nAbducción de cadera de pie: 3 × 15 · 20 kg\nAducción de pie: 3 × 15 · 40→45 kg"
 }
 ]
