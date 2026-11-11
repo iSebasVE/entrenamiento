@@ -219,5 +219,23 @@
 "duracionSeg": 3564,
 "fcMedia": 99,
 "descripcion": "Curl femoral: 4 × 12 · 45→59 kg\nExtensión de cuádriceps: 4 × 12 · 23→36.5 kg\nHip thrust con barra: 4 × 10 · 42 kg\nAbducción de cadera de pie: 3 × 15 · 20 kg\nAducción de pie: 3 × 15 · 40→45 kg"
+},
+{
+"fecha": "2026-11-10",
+"hora": "18:07",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento de empuje",
+"duracionSeg": 3760,
+"fcMedia": 105,
+"descripcion": "Press de banca: 4 × 8 · 60→85 kg\nPress de hombro con mancuernas: 3 × 10/10/8 · 17.5→20 kg\nPress inclinado con mancuernas: 3 × 10/8/8 · 50 kg\nCruce de poleas: 3 × 12 · 20→30 kg\nExtensión de tríceps en polea: 3 × 12/10/10 · 15→25 kg\nElevaciones laterales con mancuernas: 3 × 15 · 10 kg"
+},
+{
+"fecha": "2026-11-10",
+"hora": "20:08",
+"tipo": "Core / Movilidad",
+"titulo": "Entrenamiento de abdomen A - Rec",
+"duracionSeg": 1236,
+"fcMedia": 86,
+"descripcion": "Crunch en polea: 3 × 12 · 50→59 kg\nElevación de piernas colgado: 3 × 10\nCardio: 3 series"
 }
 ]
