@@ -237,5 +237,34 @@
 "duracionSeg": 1236,
 "fcMedia": 86,
 "descripcion": "Crunch en polea: 3 × 12 · 50→59 kg\nElevación de piernas colgado: 3 × 10\nCardio: 3 series"
+},
+{
+"fecha": "2026-11-11",
+"hora": "18:15",
+"tipo": "Bici / Cardio",
+"titulo": "Bici Z2 - 30min",
+"duracionSeg": 1806,
+"fcMedia": 138,
+"descripcion": "30 min · FC media 138"
+},
+{
+"fecha": "2026-11-11",
+"hora": "18:47",
+"tipo": "Rodaje",
+"titulo": "Entrenamiento en cinta",
+"duracionSeg": 1802,
+"distanciaKm": 2.67,
+"fcMedia": 146,
+"rpe": 3,
+"descripcion": "Calentamiento: 14 min suave\n4 × 2 min a 6:39/km con 1 min de recuperación caminando\nEnfriamiento: 4 min"
+},
+{
+"fecha": "2026-11-11",
+"hora": "19:26",
+"tipo": "Core / Movilidad",
+"titulo": "Entrenamiento de abdomen B - Est",
+"duracionSeg": 1110,
+"fcMedia": 123,
+"descripcion": "Plancha: 3 × 40 s\nCardio: 3 series\nDead bug con peso: 3 × 20 · 5 kg"
 }
 ]
