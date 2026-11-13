@@ -266,5 +266,26 @@
 "duracionSeg": 1110,
 "fcMedia": 123,
 "descripcion": "Plancha: 3 × 40 s\nCardio: 3 series\nDead bug con peso: 3 × 20 · 5 kg"
+},
+{
+"fecha": "2026-11-12",
+"hora": "19:16",
+"tipo": "HIIT / Funcional",
+"titulo": "HIIT",
+"duracionSeg": 2885,
+"fcMedia": 162,
+"descripcion": "48 min · FC media 162"
+},
+{
+"fecha": "2026-11-12",
+"hora": "20:05",
+"tipo": "Calidad / Series",
+"titulo": "Entrenamiento de umbral",
+"duracionSeg": 718,
+"distanciaKm": 1.96,
+"fcMedia": 187,
+"rpe": 5,
+"desnivel": 10,
+"descripcion": "2.0 km continuos a 6:06/km"
 }
 ]
