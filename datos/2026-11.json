@@ -287,5 +287,23 @@
 "rpe": 5,
 "desnivel": 10,
 "descripcion": "2.0 km continuos a 6:06/km"
+},
+{
+"fecha": "2026-11-13",
+"hora": "16:18",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento de tracción",
+"duracionSeg": 2391,
+"fcMedia": 96,
+"descripcion": "Dominadas: 4 × 8 · 63.5→77 kg\nRemo sentado en polea: 3 × 10/10/8 · 45→55 kg\nPress de hombro: 3 × 15 · 5 kg\nCurl de bíceps con mancuernas: 3 × 12 · 7.5 kg"
+},
+{
+"fecha": "2026-11-13",
+"hora": "17:01",
+"tipo": "Core / Movilidad",
+"titulo": "Entrenamiento de abdomen C - Obl",
+"duracionSeg": 1283,
+"fcMedia": 108,
+"descripcion": "Cardio: 3 series\nPlancha lateral: 3 × 35 s por lado\nHiperextensiones: 3 × 12 · 15 kg"
 }
 ]
