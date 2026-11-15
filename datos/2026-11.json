@@ -305,5 +305,16 @@
 "duracionSeg": 1283,
 "fcMedia": 108,
 "descripcion": "Cardio: 3 series\nPlancha lateral: 3 × 35 s por lado\nHiperextensiones: 3 × 12 · 15 kg"
+},
+{
+"fecha": "2026-11-15",
+"hora": "06:02",
+"tipo": "Carrera",
+"titulo": "Tuluá - Media Maratón Tuluá",
+"duracionSeg": 7701,
+"distanciaKm": 21.14,
+"fcMedia": 189,
+"desnivel": 96,
+"descripcion": "🏅 Media maratón: 21.1 km en 2:08:21 · ritmo medio 6:04/km\nKm 1–7 a 6:25/km · Km 8–14 a 5:50/km · Km 15–21.1 a 5:59/km\nKm más rápido: el 12 a 5:37/km"
 }
 ]
