@@ -97,7 +97,7 @@
 function main(DATA, UPDATED, HIST){
 HIST=HIST||{};
 const TIPOS={"Rodaje":{c:"#4cc9f0",run:1},"Calidad / Series":{c:"#ff5d73",run:1},"Tirada larga":{c:"#5b8cff",run:1},"Carrera":{c:"#ffd60a",run:1},"Fuerza":{c:"#ff9f1c"},"Hyrox":{c:"#b388ff"},"Core / Movilidad":{c:"#2ec4b6"},"HIIT / Funcional":{c:"#e76f51"},"Bici / Cardio":{c:"#f4d35e"},"Fútbol":{c:"#80ed99"},"Otro":{c:"#adb5bd"}};
-const DIA1=new Date(2026,10,2), MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'], DIAS=['dom','lun','mar','mié','jue','vie','sáb'];
+const INICIO='2026-11-23', MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'], DIAS=['dom','lun','mar','mié','jue','vie','sáb'];
 const $=s=>document.querySelector(s);
 const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x==='class')e.className=v;else if(x==='style')e.style.cssText=v;else if(x.startsWith('on'))e.addEventListener(x.slice(2),v);else e.setAttribute(x,v);}for(const c of k){if(c==null||c===false)continue;e.append(c instanceof Node?c:document.createTextNode(String(c)));}return e;};
 const pad=n=>String(n).padStart(2,'0'), ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`, parseD=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
@@ -106,15 +106,18 @@ const isRun=t=>!!(TIPOS[t]||{}).run, color=t=>(TIPOS[t]||TIPOS.Otro).c;
 const fmtDur=s=>{if(!s)return'–';const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=Math.round(s%60);return h?`${h}:${pad(m)}:${pad(x)}`:`${m}:${pad(x)}`;};
 const pace=e=>(e.distanciaKm>0&&e.duracionSeg>0)?e.duracionSeg/e.distanciaKm:null;
 const fmtPace=p=>{if(!p)return'–';let m=Math.floor(p/60),s=Math.round(p%60);if(s===60){m++;s=0;}return`${m}:${pad(s)}`;};
-const dayNum=s=>Math.floor((parseD(s)-DIA1)/864e5)+1;
 const E=DATA.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha)||(b.hora||'').localeCompare(a.hora||''));
-const today=new Date(); $('#dayN').textContent='Día '+Math.max(1,Math.floor((new Date(today.getFullYear(),today.getMonth(),today.getDate())-DIA1)/864e5)+1);
+const DIAS_ENT=[...new Set(DATA.map(e=>e.fecha).filter(f=>f>=INICIO))].sort();
+const dayNum=f=>DIAS_ENT.indexOf(f)+1;
+const today=new Date();
+if(DIAS_ENT.length)$('#dayN').textContent='Día '+DIAS_ENT.length;
+else{$('#dayN').textContent='23 nov';$('#dayN').previousElementSibling.textContent='El Día 1 arranca el';}
 $('#upd').textContent='Actualizado el '+UPDATED+' · datos de Garmin y registro propio';
 
 // KPIs
 const mon=lunes(today), monS=ymd(mon);
 const runs=E.filter(e=>isRun(e.tipo));
-const desde1=E.filter(e=>e.fecha>='2026-11-02');
+const desde1=E.filter(e=>e.fecha>=INICIO);
 const kmSem=runs.filter(e=>e.fecha>=monS).reduce((s,e)=>s+(e.distanciaKm||0),0);
 const kmTot=runs.reduce((s,e)=>s+(e.distanciaKm||0),0);
 const largo=Math.max(0,...runs.map(e=>e.distanciaKm||0));
@@ -174,7 +177,7 @@ filters();list();
     const d=new Date(idx.actualizado||Date.now());
     const upd=d.toLocaleString('es-CO',{day:'numeric',month:'long',hour:'numeric',minute:'2-digit',timeZone:'America/Bogota'});
     main(arrs.flat(), upd, hist);
-  }catch(e){ document.getElementById('list').textContent='No se pudieron cargar los entrenos. Recarga la página.'; }
+  }catch(e){ console.error(e); document.getElementById('list').textContent='No se pudieron cargar los entrenos. Recarga la página.'; }
 })();
 </script>
 </body>
