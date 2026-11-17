@@ -62,7 +62,7 @@
   .stat span{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
   .stat b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:22px}
   .ruta{background:#15191e;border:1px solid #232a31;border-radius:12px;padding:10px;margin:0 0 10px;display:flex;justify-content:center}
-  .ruta svg{width:100%;max-width:260px;height:auto;display:block}
+  .ruta svg{width:100%;height:210px;display:block}
   .txt{white-space:pre-wrap;font-size:14px;line-height:1.55;color:#cfd5dc;margin:0 0 10px}
   table{width:100%;border-collapse:collapse;font-size:14px}
   th{text-align:left;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;padding:6px 4px;border-bottom:1px solid var(--line)}
@@ -159,7 +159,7 @@ function list(){
     const st=[];if(e.duracionSeg)st.push(['Duración',fmtDur(e.duracionSeg)]);if(e.distanciaKm)st.push(['Distancia',e.distanciaKm+' km']);if(isRun(e.tipo)&&pace(e))st.push(['Ritmo',fmtPace(pace(e))+' /km']);if(e.fcMedia)st.push(['FC media',e.fcMedia]);if(e.rpe)st.push(['Esfuerzo',e.rpe+'/10']);if(e.desnivel)st.push(['Desnivel','+'+Math.round(e.desnivel)+' m']);
     const body=el('div',{class:'body'});
     if(st.length)body.append(el('div',{class:'stats'},...st.map(([k,v])=>el('div',{class:'stat'},el('span',{},k),el('b',{},v)))));
-    if(e.ruta){const r=document.createElement('div');r.className='ruta';const m=e.ruta.match(/-?[\d.]+/g).map(Number),x0=m[0],y0=m[1],x1=m[m.length-2],y1=m[m.length-1],ys=m.filter((v,i)=>i%2),ya=Math.min(...ys)-5,yb=Math.max(...ys)+5;r.innerHTML=`<svg viewBox="0 ${ya} 100 ${Math.max(40,yb-ya)}" aria-label="Forma de la ruta"><path d="${e.ruta}" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${x1}" cy="${y1}" r="2.2" fill="#0d1013" stroke="var(--c)" stroke-width="1.2"/><circle cx="${x0}" cy="${y0}" r="2.2" fill="var(--c)"/></svg>`;body.append(r);}
+    if(e.ruta){const r=document.createElement('div');r.className='ruta';const m=e.ruta.match(/-?[\d.]+/g).map(Number),x0=m[0],y0=m[1],x1=m[m.length-2],y1=m[m.length-1],xs=m.filter((v,i)=>!(i%2)),ys=m.filter((v,i)=>i%2),xa=Math.min(...xs),xb=Math.max(...xs),ya=Math.min(...ys),yb=Math.max(...ys),pd=Math.max(xb-xa,yb-ya)*0.06+3;r.innerHTML=`<svg viewBox="${xa-pd} ${ya-pd} ${xb-xa+2*pd} ${yb-ya+2*pd}" preserveAspectRatio="xMidYMid meet" aria-label="Forma de la ruta"><path d="${e.ruta}" fill="none" stroke="var(--c)" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${x1}" cy="${y1}" r="${(Math.max(xb-xa,yb-ya)+2*pd)*0.02}" fill="#0d1013" stroke="var(--c)" stroke-width="2.5" vector-effect="non-scaling-stroke"/><circle cx="${x0}" cy="${y0}" r="${(Math.max(xb-xa,yb-ya)+2*pd)*0.02}" fill="var(--c)"/></svg>`;body.append(r);}
     if(e.descripcion)body.append(el('p',{class:'txt'},e.descripcion));
     if(!e.descripcion&&e.ejercicios&&e.ejercicios.length){const tb=el('tbody');e.ejercicios.forEach(x=>tb.append(el('tr',{},el('td',{},x.nombre),el('td',{class:'n'},x.series||'–'),el('td',{class:'n'},x.reps??'–'),el('td',{class:'n'},x.kg?x.kg+' kg':'–'))));body.append(el('table',{},el('thead',{},el('tr',{},el('th',{},'Ejercicio'),el('th',{class:'n'},'Series'),el('th',{class:'n'},'Reps'),el('th',{class:'n'},'Peso'))),tb));}
     const dn=dayNum(e.fecha);
