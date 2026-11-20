@@ -356,5 +356,23 @@
 "distanciaKm": 1.02,
 "fcMedia": 94,
 "descripcion": "Caminata suave en cinta: 1.0 km en 20 min"
+},
+{
+"fecha": "2026-11-19",
+"hora": "18:01",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento de tracción",
+"duracionSeg": 2699,
+"fcMedia": 87,
+"descripcion": "Dominadas: 4 × 8 · 63.5→81.5 kg\nRemo sentado en polea: 3 × 10 · 45→54.5 kg\nPress de hombro: 3 × 15 · 41 kg\nCurl de bíceps con mancuernas: 3 × 12 · 10 kg"
+},
+{
+"fecha": "2026-11-19",
+"hora": "18:51",
+"tipo": "Core / Movilidad",
+"titulo": "Entrenamiento de abdomen C - Obl",
+"duracionSeg": 1270,
+"fcMedia": 95,
+"descripcion": "Cardio: 3 series\nPlancha lateral: 3 × 35 s por lado\nHiperextensiones: 3 × 12 · 20 kg"
 }
 ]
