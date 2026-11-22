@@ -374,5 +374,14 @@
 "duracionSeg": 1270,
 "fcMedia": 95,
 "descripcion": "Cardio: 3 series\nPlancha lateral: 3 × 35 s por lado\nHiperextensiones: 3 × 12 · 20 kg"
+},
+{
+"fecha": "2026-11-21",
+"hora": "11:14",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento full body",
+"duracionSeg": 4340,
+"fcMedia": 103,
+"descripcion": "Hip thrust con barra: 3 × 10 · 60→120 kg\nPress de banca: 3 × 8 · 60→80 kg\nDominadas: 3 × 8 · 63.5→72.5 kg\nCurl femoral: 3 × 12 · 45.5→54.5 kg\nPress de hombro con mancuernas: 3 × 10 · 17.5 kg\nExtensión de cuádriceps: 3 × 12 · 35→40 kg\nRemo sentado en polea: 3 × 10/10/11 · 36→45.5 kg"
 }
 ]
