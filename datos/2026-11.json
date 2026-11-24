@@ -383,5 +383,26 @@
 "duracionSeg": 4340,
 "fcMedia": 103,
 "descripcion": "Hip thrust con barra: 3 × 10 · 60→120 kg\nPress de banca: 3 × 8 · 60→80 kg\nDominadas: 3 × 8 · 63.5→72.5 kg\nCurl femoral: 3 × 12 · 45.5→54.5 kg\nPress de hombro con mancuernas: 3 × 10 · 17.5 kg\nExtensión de cuádriceps: 3 × 12 · 35→40 kg\nRemo sentado en polea: 3 × 10/10/11 · 36→45.5 kg"
+},
+{
+"fecha": "2026-11-23",
+"hora": "18:06",
+"tipo": "Rodaje",
+"titulo": "Guacarí - Retorno 4: 6x3' trote / 1' camin",
+"duracionSeg": 2016,
+"distanciaKm": 3.82,
+"fcMedia": 133,
+"desnivel": 22,
+"descripcion": "Calentamiento: 5 min caminando\n6 × 3 min de trote a 7:12/km con 1 min caminando\nEnfriamiento: 5 min caminando",
+"ruta": "M41.3 5.1 L41.7 5.4 L40.9 8.3 L45.8 9.9 L44.3 15.4 L38.8 27.3 L39.0 32.5 L53.6 76.3 L61.7 97.0 L54.0 77.3 L38.7 30.9 L39.0 27.1 L45.0 14.0 L45.7 10.0 L41.0 8.5 L41.5 3.6 L38.2 3.0"
+},
+{
+"fecha": "2026-11-23",
+"hora": "18:50",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento de pierna",
+"duracionSeg": 3888,
+"fcMedia": 98,
+"descripcion": "Curl femoral: 4 × 12 · 45.5→59 kg\nExtensión de cuádriceps: 4 × 12 · 45.5→54.5 kg\nHip thrust con barra: 4 × 12/10/10/10 · 50→80 kg\nAbducción de cadera de pie: 3 × 15 · 30 kg\nAducción de pie: 3 × 15 · 30 kg"
 }
 ]
