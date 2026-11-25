@@ -404,5 +404,35 @@
 "duracionSeg": 3888,
 "fcMedia": 98,
 "descripcion": "Curl femoral: 4 × 12 · 45.5→59 kg\nExtensión de cuádriceps: 4 × 12 · 45.5→54.5 kg\nHip thrust con barra: 4 × 12/10/10/10 · 50→80 kg\nAbducción de cadera de pie: 3 × 15 · 30 kg\nAducción de pie: 3 × 15 · 30 kg"
+},
+{
+"fecha": "2026-11-24",
+"hora": "17:44",
+"tipo": "Fuerza",
+"titulo": "Entrenamiento de empuje",
+"duracionSeg": 3905,
+"fcMedia": 107,
+"descripcion": "Press de banca: 4 × 8/8/8/4 · 60→100 kg\nPress de hombro con mancuernas: 3 × 10 · 17.5→20 kg\nPress inclinado con mancuernas: 3 × 10/8/8 · 50→60 kg\nCruce de poleas: 3 × 12 · 25 kg\nExtensión de tríceps en polea: 3 × 12 · 22.5→27 kg\nElevaciones laterales con mancuernas: 3 × 15 · 7.5 kg"
+},
+{
+"fecha": "2026-11-24",
+"hora": "18:53",
+"tipo": "Core / Movilidad",
+"titulo": "Entrenamiento de abdomen A - Rec",
+"duracionSeg": 1186,
+"fcMedia": 100,
+"descripcion": "Crunch en polea: 3 × 12 · 65→70 kg\nElevaciones de piernas colgado: 3 × 10\nCardio: 3 series"
+},
+{
+"fecha": "2026-11-24",
+"hora": "19:16",
+"tipo": "Rodaje",
+"titulo": "Entrenamiento de recuperación",
+"duracionSeg": 1434,
+"distanciaKm": 3.01,
+"fcMedia": 152,
+"desnivel": 18,
+"descripcion": "3.0 km continuos a 7:56/km",
+"ruta": "M49.6 48.2 L48.9 54.2 L62.5 57.9 L70.0 60.9 L93.4 68.6 L94.2 68.0 L97.0 59.3 L93.1 56.0 L92.7 54.5 L93.1 51.4 L92.6 51.0 L82.5 48.0 L36.6 36.8 L4.3 31.4 L3.1 38.7 L26.6 43.2 L49.1 46.7 L49.1 51.1 L48.3 54.0 L48.6 54.2 L50.7 54.3 L48.6 54.0 L49.3 48.6 L49.3 49.5 L49.7 48.8"
 }
 ]
