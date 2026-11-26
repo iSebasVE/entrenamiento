@@ -434,5 +434,26 @@
 "desnivel": 18,
 "descripcion": "3.0 km continuos a 7:56/km",
 "ruta": "M49.6 48.2 L48.9 54.2 L62.5 57.9 L70.0 60.9 L93.4 68.6 L94.2 68.0 L97.0 59.3 L93.1 56.0 L92.7 54.5 L93.1 51.4 L92.6 51.0 L82.5 48.0 L36.6 36.8 L4.3 31.4 L3.1 38.7 L26.6 43.2 L49.1 46.7 L49.1 51.1 L48.3 54.0 L48.6 54.2 L50.7 54.3 L48.6 54.0 L49.3 48.6 L49.3 49.5 L49.7 48.8"
+},
+{
+"fecha": "2026-11-25",
+"hora": "19:07",
+"tipo": "Rodaje",
+"titulo": "Guacarí - Trote Z2 20' continuo",
+"duracionSeg": 1872,
+"distanciaKm": 4.02,
+"fcMedia": 147,
+"desnivel": 20,
+"descripcion": "Calentamiento: 5 min suave\n20 min continuos a 7:42/km\nEnfriamiento: 6 min",
+"ruta": "M3.0 44.3 L8.1 48.9 L9.4 49.0 L9.5 49.6 L11.8 49.0 L14.6 49.8 L20.7 49.2 L25.6 50.9 L27.2 52.3 L29.0 52.6 L45.3 52.2 L57.8 55.7 L59.0 55.2 L60.1 51.1 L61.2 50.4 L70.8 49.7 L76.3 50.5 L78.2 49.7 L83.3 49.6 L89.6 48.1 L97.0 48.9 L89.9 48.0 L83.9 49.4 L78.1 49.5 L76.3 50.3 L70.5 49.6 L60.8 50.4 L59.8 51.2 L59.0 54.8 L57.8 55.5 L46.4 52.2 L28.2 52.4 L25.4 50.6 L21.7 49.2 L14.2 49.7"
+},
+{
+"fecha": "2026-11-25",
+"hora": "20:12",
+"tipo": "Core / Movilidad",
+"titulo": "Entrenamiento de abdomen B - Est",
+"duracionSeg": 1220,
+"fcMedia": 90,
+"descripcion": "Plancha: 3 × 40 s\nCardio: 3 series\nDead bug con peso: 3 × 4/20/20 · 8 kg"
 }
 ]
