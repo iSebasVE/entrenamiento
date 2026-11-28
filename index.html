@@ -109,7 +109,7 @@ const fmtDur=s=>{if(!s)return'–';const h=Math.floor(s/3600),m=Math.floor(s%360
 const pace=e=>(e.distanciaKm>0&&e.duracionSeg>0)?e.duracionSeg/e.distanciaKm:null;
 const fmtPace=p=>{if(!p)return'–';let m=Math.floor(p/60),s=Math.round(p%60);if(s===60){m++;s=0;}return`${m}:${pad(s)}`;};
 const E=DATA.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha)||(b.hora||'').localeCompare(a.hora||''));
-const DIAS_ENT=[...new Set(DATA.map(e=>e.fecha).filter(f=>f>=INICIO))].sort();
+const DIAS_ENT=[...new Set(DATA.filter(e=>isRun(e.tipo)).map(e=>e.fecha).filter(f=>f>=INICIO))].sort();
 const dayNum=f=>DIAS_ENT.indexOf(f)+1;
 const today=new Date();
 if(DIAS_ENT.length)$('#dayN').textContent='Día '+DIAS_ENT.length;
